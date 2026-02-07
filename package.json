@@ -1,0 +1,23 @@
+{
+  "name": "landing-kit",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enxtur/landing-kit.git"
+  },
+  "keywords": ["landing", "kit", "landing-kit"],
+  "author": "enxtur",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/enxtur/landing-kit/issues"
+  },
+  "homepage": "https://github.com/enxtur/landing-kit#readme"
+}
