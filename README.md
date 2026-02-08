@@ -1,5 +1,3 @@
-
-
 # landing-kit
 
 Build multi-page marketing websites using typed config instead of JSX.
@@ -15,13 +13,7 @@ No CMS. No visual editor. No page builders. Just code → build → deploy.
 
 `landing-kit` lets you build marketing websites by writing **configuration, not React components**.
 
-You describe your site in a single `site.config.ts` file:
-- pages
-- routes
-- sections
-- meta tags
-
-The framework renders everything using predefined section renderers and CSS-only templates, then outputs a fully static site.
+You describe your site in **two files**: `landing.config.ts` (pages, routes, sections, meta) and `main.tsx` (a single component that wraps the framework content). The framework renders everything using predefined section renderers and CSS-only templates, then outputs a fully static site.
 
 ---
 
@@ -65,13 +57,13 @@ If you want full design freedom or a CMS, this is probably not for you.
 
 ## How it works
 
-1. You define your site in `site.config.ts`
-2. Pages are mapped from config keys to routes
-3. Each page is rendered using predefined section renderers
-4. A Next.js wrapper handles routing and static export
-5. The output is a fully static website
+1. You define your site in `landing.config.ts` (default export of `defineSite(...)`).
+2. Your `main.tsx` exports a `Main` component that wraps the framework content in `<LandingKit>{children}</LandingKit>`.
+3. When you run `npm run dev` or `npm run build`, the `landing-kit` CLI auto-generates a hidden `app/` directory (gitignored), wires it to your config and `main.tsx`, and runs Next.js.
+4. Pages are mapped from config keys to routes; each page is rendered using predefined section renderers.
+5. The output is a fully static website.
 
-Next.js is used internally, but users never touch routing or page files.
+Next.js is used internally, but you never see routing or page files. You only edit the config and `main.tsx`.
 
 ---
 
@@ -80,24 +72,47 @@ Next.js is used internally, but users never touch routing or page files.
 ```
 landing-kit/
 ├─ packages/
-│  ├─ core/        # framework logic (config, rendering)
-│  ├─ next/        # Next.js wrapper
-│  └─ templates/   # CSS-only templates
+│  ├─ core/              # framework logic (config, rendering, section types)
+│  ├─ next/              # Next.js wrapper, LandingKit component, CLI
+│  ├─ templates/         # CSS-only templates
+│  └─ create-landing-app # scaffold CLI
+├─ template/             # scaffold template (landing.config + main only)
 ├─ examples/
 └─ README.md
 ```
+
+Your scaffolded project looks like this:
+
+```
+my-site/
+├─ landing.config.ts   # your site content (pages, sections, meta)
+├─ main.tsx            # your wrapper component
+├─ next.config.ts      # static export config (no need to edit)
+├─ tsconfig.json
+├─ package.json
+└─ .gitignore          # ignores app/, .next/, out/, node_modules
+```
+
+No `app/` directory, no page files, no routing code. The framework handles all of that.
 
 ---
 
 ## Getting started
 
-Scaffold a new site:
+From the repo root, scaffold a new site:
 
 ```
-npm create landing-app@latest
+node packages/create-landing-app/bin.js my-site
 cd my-site
 npm run dev
 ```
+
+(When published, you will use `npm create landing-app@latest` instead.)
+
+You only edit two files:
+
+- **landing.config.ts** — default export with `defineSite({ meta, pages })`
+- **main.tsx** — default export `function Main({ children }) { return <LandingKit>{children}</LandingKit> }`
 
 Build static output:
 
@@ -105,11 +120,13 @@ Build static output:
 npm run build
 ```
 
-Deploy the generated files to any static host.
+Deploy the generated `out/` folder to any static host.
 
 ---
 
-## Example config
+## Example
+
+**landing.config.ts**
 
 ```ts
 import { defineSite } from "@landing/core";
@@ -118,6 +135,7 @@ export default defineSite({
   meta: {
     title: "My Product",
     description: "Simple landing pages, done right",
+    url: "https://example.com",
   },
   pages: {
     "/": {
@@ -127,12 +145,30 @@ export default defineSite({
           type: "hero",
           heading: "Build landing pages fast",
           subheading: "Config in. Static site out.",
+          buttons: [
+            { label: "Get started", href: "/pricing", variant: "primary" },
+            { label: "Learn more", href: "/about", variant: "secondary" },
+          ],
         },
       ],
     },
   },
 });
 ```
+
+**main.tsx**
+
+```tsx
+import { LandingKit } from "@landing/next";
+
+export default function Main({
+  children,
+}: { children: React.ReactNode }): React.ReactElement {
+  return <LandingKit>{children}</LandingKit>;
+}
+```
+
+That’s it. Add more sections (features, pricing, cta, faq, footer) and pages in `landing.config.ts` as needed.
 
 ---
 

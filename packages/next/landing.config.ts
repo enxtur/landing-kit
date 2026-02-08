@@ -1,6 +1,6 @@
 import { defineSite } from "@landing/core";
 
-export const siteConfig = defineSite({
+export default defineSite({
   meta: {
     title: "My Product",
     description: "Simple landing pages, done right. Config in. Static site out.",

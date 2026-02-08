@@ -1,22 +1,14 @@
 {
-  "name": "@landing/next",
-  "version": "1.0.0",
+  "name": "my-landing-site",
+  "version": "0.0.0",
   "private": true,
-  "main": "./index.tsx",
-  "types": "./index.tsx",
-  "bin": {
-    "landing-kit": "./cli.js"
-  },
-  "exports": {
-    ".": "./index.tsx"
-  },
   "scripts": {
-    "dev": "node cli.js dev",
-    "build": "node cli.js build",
-    "lint": "echo Lint skipped && exit 0"
+    "dev": "landing-kit dev",
+    "build": "landing-kit build"
   },
   "dependencies": {
     "@landing/core": "*",
+    "@landing/next": "*",
     "next": "^16.1.6",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
