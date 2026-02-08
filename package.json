@@ -1,12 +1,17 @@
 {
   "name": "landing-kit",
   "version": "1.0.0",
+  "private": true,
   "description": "",
   "main": "index.js",
+  "workspaces": ["packages/*", "examples/*"],
   "directories": {
     "example": "examples"
   },
   "scripts": {
+    "dev": "npm run dev -w @landing/next",
+    "build": "npm run build -w @landing/next",
+    "lint": "npm run lint -w @landing/next",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,5 +24,16 @@
   "bugs": {
     "url": "https://github.com/enxtur/landing-kit/issues"
   },
-  "homepage": "https://github.com/enxtur/landing-kit#readme"
+  "homepage": "https://github.com/enxtur/landing-kit#readme",
+  "dependencies": {
+    "next": "^16.1.6",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@types/node": "^25.2.1",
+    "@types/react": "^19.2.13",
+    "@types/react-dom": "^19.2.3",
+    "typescript": "^5.9.3"
+  }
 }

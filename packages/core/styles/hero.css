@@ -1,0 +1,64 @@
+.lk-hero {
+  padding: var(--lk-space-3xl) var(--lk-space-lg);
+  text-align: center;
+  background: var(--lk-color-bg-alt);
+}
+
+.lk-hero__inner {
+  max-width: var(--lk-max-width);
+  margin: 0 auto;
+}
+
+.lk-hero__heading {
+  margin: 0 0 var(--lk-space-md);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.lk-hero__subheading {
+  margin: 0 0 var(--lk-space-xl);
+  font-size: 1.25rem;
+  color: var(--lk-color-text-muted);
+}
+
+.lk-hero__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--lk-space-md);
+  justify-content: center;
+}
+
+.lk-hero__btn {
+  display: inline-block;
+  padding: var(--lk-space-md) var(--lk-space-xl);
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: var(--lk-radius);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.lk-hero__btn--primary {
+  background: var(--lk-color-primary);
+  color: white;
+  border: none;
+}
+
+.lk-hero__btn--primary:hover {
+  background: var(--lk-color-primary-hover);
+  text-decoration: none;
+}
+
+.lk-hero__btn--secondary {
+  background: transparent;
+  color: var(--lk-color-primary);
+  border: 2px solid var(--lk-color-primary);
+}
+
+.lk-hero__btn--secondary:hover {
+  background: var(--lk-color-primary);
+  color: white;
+  text-decoration: none;
+}
