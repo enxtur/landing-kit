@@ -2,3 +2,4 @@ node_modules
 out
 .next
 packages/next/app
+packages/next/.generated

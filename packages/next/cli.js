@@ -1,18 +1,19 @@
 #!/usr/bin/env node
-const { writeFileSync, mkdirSync, existsSync } = require("fs");
+const { writeFileSync, mkdirSync, existsSync, rmSync, cpSync } = require("fs");
 const { join } = require("path");
 const { execSync } = require("child_process");
 
 const cwd = process.cwd();
 const command = process.argv[2];
+const pkgDir = __dirname;
 
 if (!command || !["dev", "build"].includes(command)) {
   console.error("Usage: landing-kit <dev|build>");
   process.exit(1);
 }
 
-// Generate the app/ directory from templates embedded in this package.
-generateApp(cwd);
+// Generate the app/ directory under the package, then symlink from project root.
+generateApp(cwd, pkgDir);
 
 // Run next
 try {
@@ -22,17 +23,19 @@ try {
 }
 
 // -------------------------------------------------------------------
-// Generates the hidden app/ directory that the user never touches.
+// Generates the app under <pkgDir>/.generated/app, then either symlinks
+// project root app -> it (scaffolded project) or writes into project root app
+// (monorepo) because Next.js fails to resolve _not-found when app is a symlink.
 // -------------------------------------------------------------------
-function generateApp(dir) {
-  const appDir = join(dir, "app");
-  const slugDir = join(appDir, "[[...slug]]");
+function generateApp(projectRoot, pkgDir) {
+  const generatedAppDir = join(pkgDir, ".generated", "app");
+  const slugDir = join(generatedAppDir, "[[...slug]]");
 
   mkdirSync(slugDir, { recursive: true });
 
   // app/layout.tsx
   writeFileSync(
-    join(appDir, "layout.tsx"),
+    join(generatedAppDir, "layout.tsx"),
     `import * as React from "react";
 import Script from "next/script";
 import "@landing/core/styles";
@@ -109,7 +112,7 @@ export default async function Page({
 
   // app/not-found.tsx
   writeFileSync(
-    join(appDir, "not-found.tsx"),
+    join(generatedAppDir, "not-found.tsx"),
     `import Link from "next/link";
 
 export default function NotFound() {
@@ -126,7 +129,7 @@ export default function NotFound() {
 
   // app/sitemap.ts
   writeFileSync(
-    join(appDir, "sitemap.ts"),
+    join(generatedAppDir, "sitemap.ts"),
     `import config from "../landing.config";
 
 export const dynamic = "force-static";
@@ -143,7 +146,7 @@ export default function sitemap() {
 
   // app/robots.ts
   writeFileSync(
-    join(appDir, "robots.ts"),
+    join(generatedAppDir, "robots.ts"),
     `import config from "../landing.config";
 
 export const dynamic = "force-static";
@@ -157,4 +160,10 @@ export default function robots() {
 }
 `
   );
+
+  // Next.js fails to resolve _not-found when app is a symlink, so we always copy
+  // .generated/app to project root app/ so the build works. The canonical app lives under the package.
+  const appPath = join(projectRoot, "app");
+  if (existsSync(appPath)) rmSync(appPath, { recursive: true, force: true });
+  cpSync(generatedAppDir, appPath, { recursive: true });
 }

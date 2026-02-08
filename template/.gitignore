@@ -1,4 +1,4 @@
 node_modules
 .next
 out
-packages/next/app
+app
