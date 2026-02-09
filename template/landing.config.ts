@@ -1,10 +1,18 @@
 import { defineSite } from "@landing/core";
 
+const SITE = {
+  name: "My Product",
+  description: "Simple landing pages, done right. Config in. Static site out.",
+  url: "https://example.com",
+} as const;
+
+const COPYRIGHT = `© 2026 ${SITE.name}. All rights reserved.`;
+
 export default defineSite({
   meta: {
-    title: "My Product",
-    description: "Simple landing pages, done right. Config in. Static site out.",
-    url: "https://example.com",
+    title: SITE.name,
+    description: SITE.description,
+    url: SITE.url,
   },
   pages: {
     "/": {
@@ -22,7 +30,7 @@ export default defineSite({
         },
         {
           type: "footer",
-          copyright: "© 2026 My Product. All rights reserved.",
+          copyright: COPYRIGHT,
         },
       ],
     },

@@ -36,14 +36,14 @@ function generateApp(projectRoot, pkgDir) {
   // app/layout.tsx
   writeFileSync(
     join(generatedAppDir, "layout.tsx"),
-    `import * as React from "react";
+    `import type { PropsWithChildren } from "react";
 import Script from "next/script";
 import "@landing/core/styles";
 import config from "../landing.config";
 
 export default function RootLayout({
   children,
-}: Readonly<{ children: React.ReactNode }>) {
+}: PropsWithChildren) {
   const gtagId = config.analytics;
 
   return (
@@ -81,9 +81,12 @@ import { renderPage, buildMeta } from "@landing/core";
 import config from "../../landing.config";
 import Main from "../../main";
 
+const pathFromSlug = (slug?: string[]) => "/" + (slug?.join("/") ?? "");
+const pageFromSlug = (slug?: string[]) => config.pages[pathFromSlug(slug)];
+
 export async function generateStaticParams() {
-  return Object.keys(config.pages).map((path) => ({
-    slug: path === "/" ? [] : path.slice(1).split("/"),
+  return Object.keys(config.pages).map((route) => ({
+    slug: route === "/" ? [] : route.slice(1).split("/"),
   }));
 }
 
@@ -91,8 +94,7 @@ export async function generateMetadata({
   params,
 }: { params: Promise<{ slug?: string[] }> }) {
   const { slug } = await params;
-  const path = "/" + (slug?.join("/") ?? "");
-  const page = config.pages[path];
+  const page = pageFromSlug(slug);
   if (!page) return {};
   return buildMeta(config, page);
 }
@@ -101,8 +103,7 @@ export default async function Page({
   params,
 }: { params: Promise<{ slug?: string[] }> }) {
   const { slug } = await params;
-  const path = "/" + (slug?.join("/") ?? "");
-  const page = config.pages[path];
+  const page = pageFromSlug(slug);
   if (!page) notFound();
   const content = renderPage(page, config);
   return <Main>{content}</Main>;

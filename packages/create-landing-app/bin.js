@@ -13,6 +13,7 @@ if (existsSync(targetDir)) {
 
 console.log(`Creating landing-kit site in ${targetDir}...`);
 mkdirSync(targetDir, { recursive: true });
+execSync("git init", { cwd: targetDir, stdio: "inherit" });
 cpSync(templateDir, targetDir, { recursive: true });
 console.log("Installing dependencies...");
 execSync("npm install", { cwd: targetDir, stdio: "inherit" });

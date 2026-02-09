@@ -10,6 +10,35 @@ export interface MetaConfig {
   url?: string;
 }
 
+export type ButtonVariant = "primary" | "secondary";
+
+/**
+ * Shared base fields for all sections.
+ */
+export interface SectionBase {
+  /**
+   * Optional anchor id for deep-linking (e.g. "features" for /#features).
+   * When set, the section wrapper receives this id.
+   */
+  id?: string;
+}
+
+/**
+ * Shared heading fields for sections that can render a heading + subheading.
+ */
+export interface SectionHeading {
+  heading?: string;
+  subheading?: string;
+}
+
+/**
+ * Required heading fields for sections that must render a heading.
+ */
+export interface SectionHeadingRequired {
+  heading: string;
+  subheading?: string;
+}
+
 /**
  * CTA button definition for hero and other sections.
  */
@@ -17,18 +46,16 @@ export interface CtaButton {
   label: string;
   href: string;
   /** Optional variant: primary (default) or secondary */
-  variant?: "primary" | "secondary";
+  variant?: ButtonVariant;
 }
 
 /**
  * Hero section: heading, subheading, optional CTA buttons.
  */
-export interface HeroSection {
+export interface HeroSection extends SectionBase, SectionHeadingRequired {
   type: "hero";
-  heading: string;
-  subheading?: string;
   /** Optional CTA buttons below the subheading */
-  buttons?: CtaButton[];
+  buttons?: ReadonlyArray<CtaButton>;
 }
 
 /**
@@ -43,11 +70,9 @@ export interface FeatureItem {
 /**
  * Features section: grid of feature cards.
  */
-export interface FeaturesSection {
+export interface FeaturesSection extends SectionBase, SectionHeading {
   type: "features";
-  heading?: string;
-  subheading?: string;
-  items: FeatureItem[];
+  items: ReadonlyArray<FeatureItem>;
 }
 
 /**
@@ -58,7 +83,7 @@ export interface PricingTier {
   price: string;
   period?: string;
   description?: string;
-  features: string[];
+  features: ReadonlyArray<string>;
   /** CTA button for this tier */
   cta: CtaButton;
   /** Optional highlight (e.g. "Popular") */
@@ -68,19 +93,16 @@ export interface PricingTier {
 /**
  * Pricing section: tier cards.
  */
-export interface PricingSection {
+export interface PricingSection extends SectionBase, SectionHeading {
   type: "pricing";
-  heading?: string;
-  subheading?: string;
-  tiers: PricingTier[];
+  tiers: ReadonlyArray<PricingTier>;
 }
 
 /**
  * Call-to-action section: single banner with heading, description, button.
  */
-export interface CtaSection {
+export interface CtaSection extends SectionBase, SectionHeadingRequired {
   type: "cta";
-  heading: string;
   description?: string;
   button: CtaButton;
 }
@@ -96,28 +118,31 @@ export interface FaqItem {
 /**
  * FAQ section: collapsible Q&A (details/summary).
  */
-export interface FaqSection {
+export interface FaqSection extends SectionBase, SectionHeading {
   type: "faq";
-  heading?: string;
-  subheading?: string;
-  items: FaqItem[];
+  items: ReadonlyArray<FaqItem>;
 }
 
 /**
  * Link group in footer (e.g. "Product", "Company").
  */
+export interface FooterLink {
+  label: string;
+  href: string;
+}
+
 export interface FooterLinkGroup {
   title: string;
-  links: { label: string; href: string }[];
+  links: ReadonlyArray<FooterLink>;
 }
 
 /**
  * Footer section: link columns and copyright.
  */
-export interface FooterSection {
+export interface FooterSection extends SectionBase {
   type: "footer";
   /** Optional link columns */
-  linkGroups?: FooterLinkGroup[];
+  linkGroups?: ReadonlyArray<FooterLinkGroup>;
   copyright?: string;
 }
 
@@ -138,7 +163,7 @@ export type SectionConfig =
 export interface PageConfig {
   title: string;
   description?: string;
-  sections: SectionConfig[];
+  sections: ReadonlyArray<SectionConfig>;
 }
 
 /**

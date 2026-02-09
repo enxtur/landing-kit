@@ -9,16 +9,19 @@ export function buildMeta(
   page: PageConfig
 ): Metadata {
   const title = page.title;
-  const description =
-    page.description ?? site.meta.description;
-  const baseUrl = site.meta.url?.replace(/\/$/, "") ?? "";
+  const description = page.description ?? site.meta.description;
+  const baseUrl = site.meta.url?.replace(/\/$/, "");
+  const metadataBase = baseUrl ? new URL(baseUrl) : undefined;
   const ogImage = site.meta.ogImage
-    ? (baseUrl ? new URL(site.meta.ogImage, baseUrl + "/").href : site.meta.ogImage)
+    ? metadataBase
+      ? new URL(site.meta.ogImage, metadataBase).href
+      : site.meta.ogImage
     : undefined;
 
   return {
     title,
     description,
+    ...(metadataBase && { metadataBase }),
     openGraph: {
       title,
       description,

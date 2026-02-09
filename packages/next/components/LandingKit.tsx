@@ -1,4 +1,4 @@
-import * as React from "react";
+import type { PropsWithChildren, ReactElement } from "react";
 
 /**
  * Wrapper component for the framework content. Use in your main.tsx:
@@ -6,6 +6,6 @@ import * as React from "react";
  */
 export function LandingKit({
   children,
-}: { children: React.ReactNode }): React.ReactElement {
+}: PropsWithChildren): ReactElement {
   return <div className="lk-root">{children}</div>;
 }

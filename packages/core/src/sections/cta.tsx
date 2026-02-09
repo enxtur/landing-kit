@@ -1,11 +1,18 @@
 import type { CtaSection as CtaSectionConfig } from "../types";
 
-export function CtaSection({ section }: { section: CtaSectionConfig }) {
+export function CtaSection({
+  section,
+  index = 0,
+}: { section: CtaSectionConfig; index?: number }) {
   const btn = section.button;
+  const variant = btn.variant ?? "primary";
+  const headingId = section.id
+    ? `${section.id}-heading`
+    : `lk-cta-heading-${index}`;
   return (
-    <section className="lk-cta" aria-labelledby="lk-cta-heading">
+    <section id={section.id} className="lk-cta" aria-labelledby={headingId}>
       <div className="lk-cta__inner">
-        <h2 id="lk-cta-heading" className="lk-cta__heading">
+        <h2 id={headingId} className="lk-cta__heading">
           {section.heading}
         </h2>
         {section.description && (
@@ -13,7 +20,7 @@ export function CtaSection({ section }: { section: CtaSectionConfig }) {
         )}
         <a
           href={btn.href}
-          className={`lk-cta__btn lk-cta__btn--${btn.variant ?? "primary"}`}
+          className={`lk-cta__btn lk-cta__btn--${variant}`}
         >
           {btn.label}
         </a>

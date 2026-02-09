@@ -2,12 +2,22 @@ import type { FeaturesSection as FeaturesSectionConfig } from "../types";
 
 export function FeaturesSection({
   section,
-}: { section: FeaturesSectionConfig }) {
+  index = 0,
+}: { section: FeaturesSectionConfig; index?: number }) {
+  const headingId = section.heading
+    ? section.id
+      ? `${section.id}-heading`
+      : `lk-features-heading-${index}`
+    : undefined;
   return (
-    <section className="lk-features" aria-labelledby="lk-features-heading">
+    <section
+      id={section.id}
+      className="lk-features"
+      aria-labelledby={headingId}
+    >
       <div className="lk-features__inner">
         {section.heading && (
-          <h2 id="lk-features-heading" className="lk-features__heading">
+          <h2 id={headingId} className="lk-features__heading">
             {section.heading}
           </h2>
         )}

@@ -172,6 +172,25 @@ That’s it. Add more sections (features, pricing, cta, faq, footer) and pages i
 
 ---
 
+## Anchors and in-page links
+
+You can add optional `id` values to sections to enable `/#hash` anchors:
+
+```ts
+{
+  type: "features",
+  id: "features",
+  heading: "Why use landing-kit?",
+  items: [
+    // ...
+  ],
+}
+```
+
+This lets footer links like `/#features` scroll to the correct section.
+
+---
+
 ## Status
 
 This project is early-stage and evolving.

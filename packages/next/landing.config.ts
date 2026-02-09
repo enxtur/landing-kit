@@ -1,13 +1,71 @@
 import { defineSite } from "@landing/core";
 
+const SITE = {
+  name: "My Product",
+  description: "Simple landing pages, done right. Config in. Static site out.",
+  url: "https://example.com",
+} as const;
+
+const ROUTES = {
+  home: "/",
+  about: "/about",
+  pricing: "/pricing",
+} as const;
+
+const COPYRIGHT = `© 2026 ${SITE.name}`;
+
+const FOOTER_LINK_GROUPS = [
+  {
+    title: "Product",
+    links: [
+      { label: "Features", href: "/#features" },
+      { label: "Pricing", href: ROUTES.pricing },
+      { label: "FAQ", href: "/#faq" },
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      { label: "About", href: ROUTES.about },
+      { label: "Blog", href: "#" },
+      { label: "Contact", href: "#" },
+    ],
+  },
+] as const;
+
+const FOOTERS = {
+  full: {
+    type: "footer",
+    linkGroups: FOOTER_LINK_GROUPS,
+    copyright: `${COPYRIGHT}. All rights reserved.`,
+  },
+  productOnly: {
+    type: "footer",
+    linkGroups: [
+      {
+        title: "Product",
+        links: [
+          { label: "Features", href: "/#features" },
+          { label: "Pricing", href: ROUTES.pricing },
+        ],
+      },
+    ],
+    copyright: `${COPYRIGHT}.`,
+  },
+  minimal: {
+    type: "footer",
+    copyright: `${COPYRIGHT}.`,
+  },
+} as const;
+
 export default defineSite({
   meta: {
-    title: "My Product",
-    description: "Simple landing pages, done right. Config in. Static site out.",
-    url: "https://example.com",
+    title: SITE.name,
+    description: SITE.description,
+    url: SITE.url,
   },
   pages: {
-    "/": {
+    [ROUTES.home]: {
       title: "Home",
       description: "Build landing pages fast with config-driven sections.",
       sections: [
@@ -16,12 +74,13 @@ export default defineSite({
           heading: "Build landing pages fast",
           subheading: "Config in. Static site out.",
           buttons: [
-            { label: "Get started", href: "/pricing", variant: "primary" },
-            { label: "Learn more", href: "/about", variant: "secondary" },
+            { label: "Get started", href: ROUTES.pricing, variant: "primary" },
+            { label: "Learn more", href: ROUTES.about, variant: "secondary" },
           ],
         },
         {
           type: "features",
+          id: "features",
           heading: "Why use landing-kit?",
           subheading: "Everything you need to ship marketing pages.",
           items: [
@@ -75,10 +134,11 @@ export default defineSite({
           type: "cta",
           heading: "Ready to ship?",
           description: "Get your landing page live in minutes.",
-          button: { label: "Start building", href: "/pricing" },
+          button: { label: "Start building", href: ROUTES.pricing },
         },
         {
           type: "faq",
+          id: "faq",
           heading: "Frequently asked questions",
           subheading: "Quick answers to common questions.",
           items: [
@@ -99,31 +159,10 @@ export default defineSite({
             },
           ],
         },
-        {
-          type: "footer",
-          linkGroups: [
-            {
-              title: "Product",
-              links: [
-                { label: "Features", href: "/#features" },
-                { label: "Pricing", href: "/pricing" },
-                { label: "FAQ", href: "/#faq" },
-              ],
-            },
-            {
-              title: "Company",
-              links: [
-                { label: "About", href: "/about" },
-                { label: "Blog", href: "#" },
-                { label: "Contact", href: "#" },
-              ],
-            },
-          ],
-          copyright: "© 2026 My Product. All rights reserved.",
-        },
+        FOOTERS.full,
       ],
     },
-    "/about": {
+    [ROUTES.about]: {
       title: "About",
       description: "Learn more about us.",
       sections: [
@@ -152,24 +191,12 @@ export default defineSite({
           type: "cta",
           heading: "Join us",
           description: "Start building your landing page today.",
-          button: { label: "Get started", href: "/pricing" },
+          button: { label: "Get started", href: ROUTES.pricing },
         },
-        {
-          type: "footer",
-          linkGroups: [
-            {
-              title: "Product",
-              links: [
-                { label: "Features", href: "/#features" },
-                { label: "Pricing", href: "/pricing" },
-              ],
-            },
-          ],
-          copyright: "© 2026 My Product.",
-        },
+        FOOTERS.productOnly,
       ],
     },
-    "/pricing": {
+    [ROUTES.pricing]: {
       title: "Pricing",
       description: "Plans and pricing for every team.",
       sections: [
@@ -209,10 +236,7 @@ export default defineSite({
             },
           ],
         },
-        {
-          type: "footer",
-          copyright: "© 2026 My Product.",
-        },
+        FOOTERS.minimal,
       ],
     },
   },

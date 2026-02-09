@@ -2,9 +2,10 @@ import type { FooterSection as FooterSectionConfig } from "../types";
 
 export function FooterSection({
   section,
-}: { section: FooterSectionConfig }) {
+  index: _index = 0,
+}: { section: FooterSectionConfig; index?: number }) {
   return (
-    <footer className="lk-footer" role="contentinfo">
+    <footer id={section.id} className="lk-footer" role="contentinfo">
       <div className="lk-footer__inner">
         {section.linkGroups && section.linkGroups.length > 0 && (
           <div className="lk-footer__grid">

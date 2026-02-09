@@ -1,11 +1,19 @@
 import type { FaqSection as FaqSectionConfig } from "../types";
 
-export function FaqSection({ section }: { section: FaqSectionConfig }) {
+export function FaqSection({
+  section,
+  index = 0,
+}: { section: FaqSectionConfig; index?: number }) {
+  const headingId = section.heading
+    ? section.id
+      ? `${section.id}-heading`
+      : `lk-faq-heading-${index}`
+    : undefined;
   return (
-    <section className="lk-faq" aria-labelledby="lk-faq-heading">
+    <section id={section.id} className="lk-faq" aria-labelledby={headingId}>
       <div className="lk-faq__inner">
         {section.heading && (
-          <h2 id="lk-faq-heading" className="lk-faq__heading">
+          <h2 id={headingId} className="lk-faq__heading">
             {section.heading}
           </h2>
         )}
