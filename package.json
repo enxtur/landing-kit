@@ -1,10 +1,13 @@
 {
   "name": "landing-kit",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "description": "Landing Kit",
   "main": "index.js",
-  "workspaces": ["packages/*", "examples/*"],
+  "workspaces": [
+    "packages/*",
+    "examples/*"
+  ],
   "directories": {
     "example": "examples"
   },
@@ -20,7 +23,11 @@
     "type": "git",
     "url": "git+https://github.com/enxtur/landing-kit.git"
   },
-  "keywords": ["landing", "kit", "landing-kit"],
+  "keywords": [
+    "landing",
+    "kit",
+    "landing-kit"
+  ],
   "author": "enxtur",
   "license": "MIT",
   "bugs": {
