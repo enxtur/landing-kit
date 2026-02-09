@@ -129,7 +129,7 @@ Deploy the generated `out/` folder to any static host.
 **landing.config.ts**
 
 ```ts
-import { defineSite } from "@landing/core";
+import { defineSite } from "@landing-kit/core";
 
 export default defineSite({
   meta: {
@@ -159,7 +159,7 @@ export default defineSite({
 **main.tsx**
 
 ```tsx
-import { LandingKit } from "@landing/next";
+import { LandingKit } from "@landing-kit/next";
 
 export default function Main({
   children,

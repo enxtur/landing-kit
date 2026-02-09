@@ -38,7 +38,7 @@ function generateApp(projectRoot, pkgDir) {
     join(generatedAppDir, "layout.tsx"),
     `import type { PropsWithChildren } from "react";
 import Script from "next/script";
-import "@landing/core/styles";
+import "@landing-kit/core/styles";
 import config from "../landing.config";
 
 export default function RootLayout({
@@ -77,7 +77,7 @@ export default function RootLayout({
   writeFileSync(
     join(slugDir, "page.tsx"),
     `import { notFound } from "next/navigation";
-import { renderPage, buildMeta } from "@landing/core";
+import { renderPage, buildMeta } from "@landing-kit/core";
 import config from "../../landing.config";
 import Main from "../../main";
 

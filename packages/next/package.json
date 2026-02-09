@@ -1,5 +1,5 @@
 {
-  "name": "@landing/next",
+  "name": "@landing-kit/next",
   "version": "0.0.1",
   "main": "./index.tsx",
   "types": "./index.tsx",
@@ -15,7 +15,7 @@
     "lint": "echo Lint skipped && exit 0"
   },
   "dependencies": {
-    "@landing/core": "*",
+    "@landing-kit/core": "*",
     "next": "^16.1.6",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"

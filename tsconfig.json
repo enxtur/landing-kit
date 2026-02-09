@@ -36,10 +36,10 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@landing/core": ["packages/core/src"],
-      "@landing/core/*": ["packages/core/src/*"],
-      "@landing/next": ["packages/next"],
-      "@landing/templates": ["packages/templates"]
+      "@landing-kit/core": ["packages/core/src"],
+      "@landing-kit/core/*": ["packages/core/src/*"],
+      "@landing-kit/next": ["packages/next"],
+      "@landing-kit/templates": ["packages/templates"]
     }
   }
 }

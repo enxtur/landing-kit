@@ -1,2 +1,2 @@
 /* Default theme: re-export core styles (default custom properties are in base.css) */
-@import "@landing/core/styles";
+@import "@landing-kit/core/styles";

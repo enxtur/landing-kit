@@ -1,4 +1,4 @@
-import { defineSite } from "@landing/core";
+import { defineSite } from "@landing-kit/core";
 
 const SITE = {
   name: "My Product",

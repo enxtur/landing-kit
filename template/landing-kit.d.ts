@@ -1,1 +1,1 @@
-declare module "@landing/core/styles";
+declare module "@landing-kit/core/styles";
