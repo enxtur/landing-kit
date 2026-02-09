@@ -75,7 +75,7 @@ landing-kit/
 │  ├─ core/              # framework logic (config, rendering, section types)
 │  ├─ next/              # Next.js wrapper, LandingKit component, CLI
 │  ├─ templates/         # CSS-only templates
-│  └─ create-landing-app # scaffold CLI
+│  └─ create-landing-kit # scaffold CLI
 ├─ template/             # scaffold template (landing.config + main only)
 ├─ examples/
 └─ README.md
@@ -107,7 +107,7 @@ cd my-site
 npm run dev
 ```
 
-(When published, you will use `npm create landing-app@latest` instead.)
+(When published, you will use `npm create landing-kit@latest` instead.)
 
 You only edit two files:
 
