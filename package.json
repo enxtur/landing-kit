@@ -12,7 +12,8 @@
     "dev": "npm run dev -w @landing-kit/next",
     "build": "npm run build -w @landing-kit/next",
     "lint": "npm run lint -w @landing-kit/next",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "publish:all": "npm publish -w @landing-kit/core --access public && npm publish -w @landing-kit/templates --access public && npm publish -w @landing-kit/next --access public && npm publish -w create-landing-kit --access public"
   },
   "repository": {
     "type": "git",
