@@ -1,1 +1,11 @@
 node_modules
+
+# build output
+out
+.next
+packages/next/out
+packages/next/.next
+
+# generated
+packages/next/app
+packages/next/.generated
