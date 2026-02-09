@@ -1,0 +1,11 @@
+{
+  "name": "@landing/templates",
+  "version": "0.0.1",
+  "main": "./default.css",
+  "exports": {
+    ".": "./default.css"
+  },
+  "dependencies": {
+    "@landing/core": "*"
+  }
+}
