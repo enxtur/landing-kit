@@ -1,6 +1,7 @@
 {
   "name": "landing-kit",
   "version": "0.0.1",
+  "private": true,
   "description": "Landing Kit",
   "main": "index.js",
   "workspaces": ["packages/*", "examples/*"],
