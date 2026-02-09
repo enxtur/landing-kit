@@ -5,5 +5,8 @@
   "bin": {
     "create-landing-kit": "./bin.js"
   },
-  "files": ["bin.js"]
+  "files": ["bin.js", "template"],
+  "scripts": {
+    "prepublishOnly": "node copy-template.js"
+  }
 }

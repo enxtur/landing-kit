@@ -4,7 +4,9 @@ const { join, dirname } = require("path");
 const { execSync } = require("child_process");
 
 const targetDir = process.argv[2] || "my-landing-site";
-const templateDir = join(dirname(__dirname), "..", "template");
+const bundled = join(__dirname, "template");
+const monorepo = join(dirname(__dirname), "..", "template");
+const templateDir = existsSync(bundled) ? bundled : monorepo;
 
 if (existsSync(targetDir)) {
   console.error(`Error: ${targetDir} already exists.`);
