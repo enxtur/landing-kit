@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>landing-kit — Build marketing sites with typed config</title>
+    <base href="https://enxtur.github.io/landing-kit/" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://enxtur.github.io/landing-kit/" />
+    <meta property="og:title" content="landing-kit — Build marketing sites with typed config" />
+    <meta property="og:description" content="Build multi-page static marketing websites using typed config instead of JSX. No CMS, no page builders — just code, build, deploy." />
+    <meta property="og:locale" content="en_US" />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="landing-kit — Build marketing sites with typed config" />
+    <meta name="twitter:description" content="Build multi-page static marketing websites using typed config instead of JSX. No CMS, no page builders — just code, build, deploy." />
+    <style>
+      :root {
+        --bg: #0f0f12;
+        --surface: #18181c;
+        --text: #e4e4e7;
+        --muted: #a1a1aa;
+        --accent: #7c3aed;
+        --accent-hover: #8b5cf6;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family:
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+      }
+      .wrap {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem;
+      }
+      h1 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        margin: 0 0 0.5rem;
+        letter-spacing: -0.02em;
+      }
+      .tagline {
+        color: var(--muted);
+        margin: 0 0 2rem;
+        font-size: 1rem;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        color: var(--accent-hover);
+        text-decoration: underline;
+      }
+      .links {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+      }
+      .links a {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        background: var(--surface);
+        border-radius: 8px;
+        font-weight: 500;
+      }
+      .links a:hover {
+        background: #252529;
+        text-decoration: none;
+      }
+      section {
+        margin-bottom: 2rem;
+      }
+      section h2 {
+        font-size: 1.125rem;
+        font-weight: 600;
+        margin: 0 0 0.75rem;
+        color: var(--text);
+      }
+      section p {
+        margin: 0 0 0.5rem;
+        color: var(--muted);
+      }
+      pre,
+      .block {
+        background: var(--surface);
+        border-radius: 8px;
+        padding: 1rem 1.25rem;
+        overflow-x: auto;
+        font-size: 0.875rem;
+        margin: 0.5rem 0 1rem;
+      }
+      code {
+        font-family: ui-monospace, monospace;
+      }
+      pre code {
+        color: var(--text);
+      }
+      .block p {
+        margin: 0;
+        color: var(--text);
+      }
+      ul {
+        margin: 0.5rem 0 1rem;
+        padding-left: 1.25rem;
+        color: var(--muted);
+      }
+      footer {
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--surface);
+        font-size: 0.875rem;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>landing-kit</h1>
+      <p class="tagline">
+        Build multi-page static marketing websites using typed config instead of
+        JSX.
+      </p>
+
+      <div class="links">
+        <a
+          href="https://www.npmjs.com/package/create-landing-kit"
+          target="_blank"
+          rel="noopener"
+          >npm — create-landing-kit</a
+        >
+        <a
+          href="https://github.com/enxtur/landing-kit"
+          target="_blank"
+          rel="noopener"
+          >GitHub — enxtur/landing-kit</a
+        >
+      </div>
+
+      <section>
+        <h2>What is it?</h2>
+        <p>
+          Open-source framework for fast, static landing sites. You define pages
+          and sections in a TypeScript config; the framework handles routing,
+          rendering, SEO, and static generation. No CMS, no page builders — just
+          code → build → deploy.
+        </p>
+      </section>
+
+      <section>
+        <h2>Usage guide</h2>
+        <p>Create a new project and start the dev server:</p>
+        <pre><code>npx create-landing-kit@latest my-landing-page
+cd my-landing-page
+npm run dev</code></pre>
+        <p>
+          Edit <code>landing.config.ts</code> and <code>main.tsx</code>, then
+          build static output:
+        </p>
+        <pre><code>npm run build</code></pre>
+        <p>Deploy the generated <code>out/</code> folder to any static host.</p>
+      </section>
+
+      <section>
+        <h2>Features</h2>
+        <ul>
+          <li>Multi-page static site generation</li>
+          <li>Config-driven pages and routing</li>
+          <li>
+            Predefined section types (hero, features, pricing, cta, faq, footer)
+          </li>
+          <li>
+            CSS-only templates, built-in SEO, sitemap.xml &amp; robots.txt
+          </li>
+          <li>Optional Google Analytics; deploy anywhere</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Who it’s for</h2>
+        <p>
+          Developers who want to ship landing pages fast, indie hackers,
+          backend-leaning devs who prefer config over JSX, and teams who like
+          config + Git over visual tools.
+        </p>
+      </section>
+
+      <footer>
+        <p>
+          landing-kit is early-stage; APIs may change until the first stable
+          release. MIT License.
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>
