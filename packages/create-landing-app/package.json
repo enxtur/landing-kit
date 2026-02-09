@@ -1,0 +1,9 @@
+{
+  "name": "create-landing-app",
+  "version": "0.0.1",
+  "description": "Scaffold a new landing-kit site",
+  "bin": {
+    "create-landing-app": "./bin.js"
+  },
+  "files": ["bin.js"]
+}
