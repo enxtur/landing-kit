@@ -1,20 +1,20 @@
 import type { PricingSection as PricingSectionConfig } from "../types";
+import { linkProps } from "../utils";
 
 export function PricingSection({
   section,
   index = 0,
-}: { section: PricingSectionConfig; index?: number }) {
+}: {
+  section: PricingSectionConfig;
+  index?: number;
+}) {
   const headingId = section.heading
     ? section.id
       ? `${section.id}-heading`
       : `lk-pricing-heading-${index}`
     : undefined;
   return (
-    <section
-      id={section.id}
-      className="lk-pricing"
-      aria-labelledby={headingId}
-    >
+    <section id={section.id} className="lk-pricing" aria-labelledby={headingId}>
       <div className="lk-pricing__inner">
         {section.heading && (
           <h2 id={headingId} className="lk-pricing__heading">
@@ -53,6 +53,7 @@ export function PricingSection({
                 <a
                   href={tier.cta.href}
                   className={`lk-pricing__cta lk-pricing__cta--${variant}`}
+                  {...linkProps(tier.cta.href)}
                 >
                   {tier.cta.label}
                 </a>

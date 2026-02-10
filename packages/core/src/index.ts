@@ -1,26 +1,13 @@
 export { defineSite } from "./config";
-export type {
-  SiteConfig,
-  MetaConfig,
-  PageConfig,
-  SectionConfig,
-  SectionBase,
-  SectionHeading,
-  SectionHeadingRequired,
-  HeroSection,
-  FeaturesSection,
-  PricingSection,
-  CtaSection,
-  FaqSection,
-  FooterSection,
-  ButtonVariant,
-  CtaButton,
-  FeatureItem,
-  PricingTier,
-  FaqItem,
-  FooterLink,
-  FooterLinkGroup,
-} from "./types";
-export { renderPage } from "./render";
 export { buildMeta } from "./meta";
+export { renderPage } from "./render";
 export { renderSection } from "./sections";
+export type {
+  ButtonVariant,
+  CtaButton, CtaSection, FaqItem, FaqSection, FeatureItem, FeaturesSection, FooterLink,
+  FooterLinkGroup, FooterSection, HeroSection, MetaConfig,
+  PageConfig, PricingSection, PricingTier, SectionBase, SectionConfig, SectionHeading,
+  SectionHeadingRequired, SiteConfig
+} from "./types";
+export { linkProps } from "./utils";
+

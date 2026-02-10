@@ -1,9 +1,12 @@
 import type { FooterSection as FooterSectionConfig } from "../types";
+import { linkProps } from "../utils";
 
 export function FooterSection({
   section,
-  index: _index = 0,
-}: { section: FooterSectionConfig; index?: number }) {
+}: {
+  section: FooterSectionConfig;
+  index?: number;
+}) {
   return (
     <footer id={section.id} className="lk-footer" role="contentinfo">
       <div className="lk-footer__inner">
@@ -15,7 +18,11 @@ export function FooterSection({
                 <ul className="lk-footer__links">
                   {group.links.map((link, j) => (
                     <li key={j}>
-                      <a href={link.href} className="lk-footer__link">
+                      <a
+                        href={link.href}
+                        className="lk-footer__link"
+                        {...linkProps(link.href)}
+                      >
                         {link.label}
                       </a>
                     </li>

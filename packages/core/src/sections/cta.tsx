@@ -1,9 +1,13 @@
 import type { CtaSection as CtaSectionConfig } from "../types";
+import { linkProps } from "../utils";
 
 export function CtaSection({
   section,
   index = 0,
-}: { section: CtaSectionConfig; index?: number }) {
+}: {
+  section: CtaSectionConfig;
+  index?: number;
+}) {
   const btn = section.button;
   const variant = btn.variant ?? "primary";
   const headingId = section.id
@@ -21,6 +25,7 @@ export function CtaSection({
         <a
           href={btn.href}
           className={`lk-cta__btn lk-cta__btn--${variant}`}
+          {...linkProps(btn.href)}
         >
           {btn.label}
         </a>
