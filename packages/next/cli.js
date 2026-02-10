@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const { writeFileSync, mkdirSync, existsSync, rmSync, cpSync } = require("fs");
+const { writeFileSync, readFileSync, mkdirSync, existsSync, rmSync, cpSync } = require("fs");
 const { join } = require("path");
 const { execSync } = require("child_process");
 
@@ -18,7 +18,8 @@ generateApp(cwd, pkgDir);
 // Run next
 try {
   execSync(`npx next ${command}`, { cwd, stdio: "inherit" });
-} catch {
+} catch (error) {
+  console.error(error.message);
   process.exit(1);
 }
 
@@ -36,130 +37,31 @@ function generateApp(projectRoot, pkgDir) {
   // app/layout.tsx
   writeFileSync(
     join(generatedAppDir, "layout.tsx"),
-    `import type { PropsWithChildren } from "react";
-import Script from "next/script";
-import "@landing-kit/core/styles";
-import config from "../landing.config";
-
-export default function RootLayout({
-  children,
-}: PropsWithChildren) {
-  const gtagId = config.analytics;
-
-  return (
-    <html lang="en">
-      <body>
-        {gtagId && (
-          <>
-            <Script
-              src={\`https://www.googletagmanager.com/gtag/js?id=\${gtagId}\`}
-              strategy="afterInteractive"
-            />
-            <Script id="gtag-init" strategy="afterInteractive">
-              {\`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '\${gtagId}');
-              \`}
-            </Script>
-          </>
-        )}
-        {children}
-      </body>
-    </html>
-  );
-}
-`
+    readFileSync(join(pkgDir, "templates", "layout.tsx"), "utf8")
   );
 
   // app/[[...slug]]/page.tsx
   writeFileSync(
     join(slugDir, "page.tsx"),
-    `import { notFound } from "next/navigation";
-import { renderPage, buildMeta } from "@landing-kit/core";
-import config from "../../landing.config";
-import Main from "../../main";
-
-const pathFromSlug = (slug?: string[]) => "/" + (slug?.join("/") ?? "");
-const pageFromSlug = (slug?: string[]) => config.pages[pathFromSlug(slug)];
-
-export async function generateStaticParams() {
-  return Object.keys(config.pages).map((route) => ({
-    slug: route === "/" ? [] : route.slice(1).split("/"),
-  }));
-}
-
-export async function generateMetadata({
-  params,
-}: { params: Promise<{ slug?: string[] }> }) {
-  const { slug } = await params;
-  const page = pageFromSlug(slug);
-  if (!page) return {};
-  return buildMeta(config, page);
-}
-
-export default async function Page({
-  params,
-}: { params: Promise<{ slug?: string[] }> }) {
-  const { slug } = await params;
-  const page = pageFromSlug(slug);
-  if (!page) notFound();
-  const content = renderPage(page, config);
-  return <Main>{content}</Main>;
-}
-`
+    readFileSync(join(pkgDir, "templates", "page.tsx"), "utf8")
   );
 
   // app/not-found.tsx
   writeFileSync(
     join(generatedAppDir, "not-found.tsx"),
-    `import Link from "next/link";
-
-export default function NotFound() {
-  return (
-    <div className="lk-not-found">
-      <h1>404</h1>
-      <p>This page could not be found.</p>
-      <Link href="/">Go home</Link>
-    </div>
-  );
-}
-`
+    readFileSync(join(pkgDir, "templates", "not-found.tsx"), "utf8")
   );
 
   // app/sitemap.ts
   writeFileSync(
     join(generatedAppDir, "sitemap.ts"),
-    `import config from "../landing.config";
-
-export const dynamic = "force-static";
-
-export default function sitemap() {
-  const baseUrl = config.meta.url?.replace(/\\/$/, "") ?? "https://example.com";
-  return Object.keys(config.pages).map((path) => ({
-    url: \`\${baseUrl}\${path === "/" ? "" : path}\`,
-    lastModified: new Date(),
-  }));
-}
-`
+    readFileSync(join(pkgDir, "templates", "sitemap.ts"), "utf8")
   );
 
   // app/robots.ts
   writeFileSync(
     join(generatedAppDir, "robots.ts"),
-    `import config from "../landing.config";
-
-export const dynamic = "force-static";
-
-export default function robots() {
-  const baseUrl = config.meta.url?.replace(/\\/$/, "") ?? "https://example.com";
-  return {
-    rules: { userAgent: "*", allow: "/" },
-    sitemap: \`\${baseUrl}/sitemap.xml\`,
-  };
-}
-`
+    readFileSync(join(pkgDir, "templates", "robots.ts"), "utf8")
   );
 
   // Next.js fails to resolve _not-found when app is a symlink, so we always copy
