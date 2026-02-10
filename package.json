@@ -3,7 +3,6 @@
   "version": "0.0.5",
   "private": true,
   "description": "Landing Kit",
-  "main": "index.js",
   "workspaces": [
     "packages/*",
     "examples/*"
