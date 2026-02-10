@@ -6,6 +6,7 @@ const {
   rmSync,
   readdirSync,
   statSync,
+  writeFileSync,
 } = require("fs");
 const { join, dirname } = require("path");
 const { execSync } = require("child_process");
@@ -42,6 +43,11 @@ try {
   mkdirSync(targetDir, { recursive: true });
   execSync("git init", { cwd: targetDir, stdio: "inherit" });
   cpSync(templateDir, targetDir, { recursive: true });
+  // npm excludes .gitignore from packages—create it directly
+  writeFileSync(
+    join(targetDir, ".gitignore"),
+    "node_modules\n.next\napp\nout\nnext-env.d.ts\n",
+  );
   console.log("Installing dependencies...");
   execSync("npm install", { cwd: targetDir, stdio: "inherit" });
 } catch (err) {
