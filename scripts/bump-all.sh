@@ -16,7 +16,6 @@ packages=(
   packages/next
   packages/templates
   packages/create-landing-app
-  examples/basic
 )
 
 for dir in "${packages[@]}"; do
