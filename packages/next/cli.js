@@ -19,7 +19,7 @@ generateApp(cwd, pkgDir);
 try {
   execSync(`npx next ${command}`, { cwd, stdio: "inherit" });
 } catch (error) {
-  console.error(error.message);
+  console.error(error instanceof Error ? error.message : String(error));
   process.exit(1);
 }
 
