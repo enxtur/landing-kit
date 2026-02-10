@@ -3,7 +3,8 @@
   "version": "0.0.4",
   "main": "./default.css",
   "exports": {
-    ".": "./default.css"
+    ".": "./default.css",
+    "./micro-saas": "./micro-saas.css"
   },
   "dependencies": {
     "@landing-kit/core": "*"

@@ -1,0 +1,98 @@
+/* Micro-SaaS theme: clean product-led look with teal accent and soft depth */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&display=swap");
+@import "@landing-kit/core/styles";
+
+:root {
+  --lk-color-primary: #0d9488;
+  --lk-color-primary-hover: #0f766e;
+  --lk-color-bg: #ffffff;
+  --lk-color-bg-alt: #f0fdfa;
+  --lk-color-text: #0f172a;
+  --lk-color-text-muted: #475569;
+  --lk-color-border: #e2e8f0;
+  --lk-font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --lk-font-size-base: 1rem;
+  --lk-line-height: 1.6;
+  --lk-space-xs: 0.25rem;
+  --lk-space-sm: 0.5rem;
+  --lk-space-md: 1rem;
+  --lk-space-lg: 1.5rem;
+  --lk-space-xl: 2rem;
+  --lk-space-2xl: 3rem;
+  --lk-space-3xl: 4rem;
+  --lk-max-width: 1120px;
+  --lk-radius: 10px;
+  --lk-radius-lg: 16px;
+  --lk-shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
+  --lk-shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.07), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
+  --lk-shadow-primary: 0 4px 14px rgba(13, 148, 136, 0.25);
+}
+
+/* Hero: subtle gradient and softer CTA */
+.lk-hero {
+  background: linear-gradient(180deg, var(--lk-color-bg-alt) 0%, var(--lk-color-bg) 100%);
+}
+
+.lk-hero__heading {
+  letter-spacing: -0.02em;
+}
+
+.lk-hero__btn--primary {
+  box-shadow: var(--lk-shadow-primary);
+}
+
+.lk-hero__btn--primary:hover {
+  box-shadow: 0 6px 20px rgba(13, 148, 136, 0.35);
+}
+
+/* Features: card lift and border */
+.lk-features__item {
+  border: 1px solid var(--lk-color-border);
+  box-shadow: var(--lk-shadow-sm);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.lk-features__item:hover {
+  box-shadow: var(--lk-shadow-md);
+}
+
+/* Pricing: highlighted tier and badges */
+.lk-pricing__tier {
+  box-shadow: var(--lk-shadow-sm);
+  transition: box-shadow 0.2s ease;
+}
+
+.lk-pricing__tier:hover {
+  box-shadow: var(--lk-shadow-md);
+}
+
+.lk-pricing__tier--highlight {
+  box-shadow: 0 0 0 2px var(--lk-color-primary), var(--lk-shadow-md);
+}
+
+.lk-pricing__cta--primary {
+  box-shadow: var(--lk-shadow-primary);
+}
+
+.lk-pricing__cta--primary:hover {
+  box-shadow: 0 6px 20px rgba(13, 148, 136, 0.35);
+}
+
+/* CTA: gradient band */
+.lk-cta {
+  background: linear-gradient(135deg, var(--lk-color-primary) 0%, var(--lk-color-primary-hover) 100%);
+}
+
+/* FAQ: softer items */
+.lk-faq__item {
+  box-shadow: var(--lk-shadow-sm);
+}
+
+/* Footer: dark teal for brand continuity */
+.lk-footer {
+  background: linear-gradient(180deg, #134e4a 0%, #0f172a 100%);
+}
+
+.lk-footer__link:hover {
+  color: #99f6e4;
+}
