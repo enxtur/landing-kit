@@ -1,12 +1,7 @@
 import type { FooterSection as FooterSectionConfig } from "../types";
 import { linkProps } from "../utils";
 
-export function FooterSection({
-  section,
-}: {
-  section: FooterSectionConfig;
-  index?: number;
-}) {
+export function FooterSection({ section }: { section: FooterSectionConfig }) {
   return (
     <footer id={section.id} className="lk-footer" role="contentinfo">
       <div className="lk-footer__inner">

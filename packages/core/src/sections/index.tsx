@@ -27,7 +27,7 @@ export function renderSection(
     case "faq":
       return <FaqSection key={key} section={section} index={index} />;
     case "footer":
-      return <FooterSection key={key} section={section} index={index} />;
+      return <FooterSection key={key} section={section} />;
     default: {
       const _: never = section;
       return null;
