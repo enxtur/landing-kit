@@ -2,3 +2,4 @@ node_modules
 .next
 app
 out
+next-env.d.ts
