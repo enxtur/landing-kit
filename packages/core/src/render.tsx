@@ -1,5 +1,5 @@
 import type React from "react";
-import type { PageConfig, SiteConfig } from "./types";
+import type { PageConfig } from "./types";
 import { renderSection } from "./sections";
 
 /**
@@ -7,7 +7,6 @@ import { renderSection } from "./sections";
  */
 export function renderPage(
   page: PageConfig,
-  _site: SiteConfig
 ): React.ReactElement {
   return (
     <>

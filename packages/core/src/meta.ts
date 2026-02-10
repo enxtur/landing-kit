@@ -11,7 +11,16 @@ export function buildMeta(
   const title = page.title;
   const description = page.description ?? site.meta.description;
   const baseUrl = site.meta.url?.replace(/\/$/, "");
-  const metadataBase = baseUrl ? new URL(baseUrl) : undefined;
+  let metadataBase: URL | undefined;
+  if (baseUrl) {
+    try {
+      metadataBase = new URL(baseUrl);
+    } catch {
+      console.warn(
+        `[landing-kit] Invalid site.meta.url "${baseUrl}". Expected a full URL (e.g. https://example.com). Skipping metadataBase.`
+      );
+    }
+  }
   const ogImage = site.meta.ogImage
     ? metadataBase
       ? new URL(site.meta.ogImage, metadataBase).href
