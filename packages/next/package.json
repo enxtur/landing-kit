@@ -9,10 +9,20 @@
   "exports": {
     ".": "./index.tsx"
   },
+  "files": [
+    "cli.js",
+    "templates",
+    "index.tsx",
+    "components",
+    "landing-kit.d.ts",
+    "next-env.d.ts",
+    "next.config.ts",
+    "landing.config.ts",
+    "main.tsx"
+  ],
   "scripts": {
     "dev": "node cli.js dev",
-    "build": "node cli.js build",
-    "lint": "echo Lint skipped && exit 0"
+    "build": "node cli.js build"
   },
   "dependencies": {
     "@landing-kit/core": "*",
