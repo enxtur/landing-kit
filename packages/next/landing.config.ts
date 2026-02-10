@@ -59,6 +59,7 @@ const FOOTERS = {
 } as const;
 
 export default defineSite({
+  template: "default",
   meta: {
     title: SITE.name,
     description: SITE.description,

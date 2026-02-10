@@ -111,7 +111,7 @@ npm run dev
 
 You only edit two files:
 
-- **landing.config.ts** — default export with `defineSite({ meta, pages })`
+- **landing.config.ts** — default export with `defineSite({ template?, meta, pages })` (optional `template`: `"default"` or `"micro-saas"`)
 - **main.tsx** — default export `function Main({ children }) { return <LandingKit>{children}</LandingKit> }`
 
 Build static output:

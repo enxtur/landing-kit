@@ -9,14 +9,19 @@ CSS-only themes for landing-kit. Re-exports `@landing-kit/core` styles with opti
 
 ## Usage
 
-```css
-/* Default theme */
-@import "@landing-kit/templates";
+Set the template in `landing.config.ts`. The Next.js CLI injects the correct styles import when generating the app layout.
 
-/* Micro-SaaS theme */
-@import "@landing-kit/templates/micro-saas";
+```ts
+import { defineSite } from "@landing-kit/core";
+
+export default defineSite({
+  template: "micro-saas",  // or "default"
+  meta: { title: "...", description: "...", url: "..." },
+  pages: { "/": { ... }, ... },
+});
 ```
 
-The micro-saas theme loads the DM Sans font via CSS, so no HTML or layout changes are needed—including in the Next.js scaffold, where the root layout is generated and overwritten on each build.
+- **default** — Uses `@landing-kit/templates` (core styles as-is).
+- **micro-saas** — Uses `@landing-kit/templates/micro-saas`. Loads the DM Sans font via CSS; no HTML or layout changes are needed.
 
 See [landing-kit](https://github.com/enxtur/landing-kit) for docs.

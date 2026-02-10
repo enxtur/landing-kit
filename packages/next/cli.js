@@ -24,6 +24,29 @@ try {
 }
 
 // -------------------------------------------------------------------
+// Load landing.config.ts and return template name (e.g. "default", "micro-saas").
+// We read the file as text and extract template with a regex so we don't need
+// to load TypeScript or resolve @landing-kit/core (jiti would parse the whole dep tree).
+// Any template name is allowed; "default" maps to the package main, others to @landing-kit/templates/<name>.
+// -------------------------------------------------------------------
+function getTemplateFromConfig(projectRoot) {
+  try {
+    const configPath = join(projectRoot, "landing.config.ts");
+    if (!existsSync(configPath)) return "default";
+    const content = readFileSync(configPath, "utf8");
+    const m = content.match(/template\s*:\s*["']([a-zA-Z0-9-]+)["']/);
+    return m ? m[1] : "default";
+  } catch {
+    return "default";
+  }
+}
+
+function getTemplateImportPath(template) {
+  if (template === "default") return "@landing-kit/templates";
+  return `@landing-kit/templates/${template}`;
+}
+
+// -------------------------------------------------------------------
 // Generates the app under <pkgDir>/.generated/app, then either symlinks
 // project root app -> it (scaffolded project) or writes into project root app
 // (monorepo) because Next.js fails to resolve _not-found when app is a symlink.
@@ -34,10 +57,18 @@ function generateApp(projectRoot, pkgDir) {
 
   mkdirSync(slugDir, { recursive: true });
 
+  const template = getTemplateFromConfig(projectRoot);
+  const templateImport = getTemplateImportPath(template);
+  let layoutContent = readFileSync(join(pkgDir, "templates", "layout.tsx"), "utf8");
+  layoutContent = layoutContent.replace(
+    /import "@landing-kit\/templates";/,
+    `import "${templateImport}";`
+  );
+
   // app/layout.tsx
   writeFileSync(
     join(generatedAppDir, "layout.tsx"),
-    readFileSync(join(pkgDir, "templates", "layout.tsx"), "utf8")
+    layoutContent
   );
 
   // app/[[...slug]]/page.tsx

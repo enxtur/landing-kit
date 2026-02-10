@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from "react";
 import Script from "next/script";
-import "@landing-kit/core/styles";
+import "@landing-kit/templates";
 import config from "../landing.config";
 
 export default function RootLayout({

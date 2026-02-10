@@ -174,4 +174,6 @@ export interface SiteConfig {
   pages: Record<string, PageConfig>;
   /** Optional Google Analytics measurement ID (e.g. G-XXXXXXXXXX) */
   analytics?: string;
+  /** Optional CSS template name (e.g. "default", "micro-saas"). Used by the Next.js CLI to inject the correct styles import. */
+  template?: string;
 }
