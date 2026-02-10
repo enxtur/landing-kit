@@ -1,6 +1,6 @@
 {
   "name": "my-landing-site",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "scripts": {
     "dev": "landing-kit dev",
     "build": "landing-kit build"
