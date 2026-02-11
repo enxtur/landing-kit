@@ -3,13 +3,15 @@ import Script from "next/script";
 import "@landing-kit/templates";
 import config from "../landing.config";
 
-export default function RootLayout({
-  children,
-}: PropsWithChildren) {
+export default function RootLayout({ children }: PropsWithChildren) {
   const gtagId = config.analytics;
 
   return (
     <html lang="en">
+      <head>
+        {/* @ts-expect-error __HAS_CUSTOM_STYLE__ is replaced at build time by landing-kit CLI */}
+        {__HAS_CUSTOM_STYLE__ && <link rel="stylesheet" href="/style.css" />}
+      </head>
       <body>
         {gtagId && (
           <>

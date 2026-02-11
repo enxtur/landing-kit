@@ -1,5 +1,12 @@
 #!/usr/bin/env node
-const { writeFileSync, readFileSync, mkdirSync, existsSync, rmSync, cpSync } = require("fs");
+const {
+  writeFileSync,
+  readFileSync,
+  mkdirSync,
+  existsSync,
+  rmSync,
+  cpSync,
+} = require("fs");
 const { join } = require("path");
 const { execSync } = require("child_process");
 
@@ -59,40 +66,45 @@ function generateApp(projectRoot, pkgDir) {
 
   const template = getTemplateFromConfig(projectRoot);
   const templateImport = getTemplateImportPath(template);
-  let layoutContent = readFileSync(join(pkgDir, "templates", "layout.tsx"), "utf8");
+  let layoutContent = readFileSync(
+    join(pkgDir, "templates", "layout.tsx"),
+    "utf8",
+  );
   layoutContent = layoutContent.replace(
     /import "@landing-kit\/templates";/,
-    `import "${templateImport}";`
+    `import "${templateImport}";`,
+  );
+  const hasCustomStyle = existsSync(join(projectRoot, "public", "style.css"));
+  layoutContent = layoutContent.replace(
+    /__HAS_CUSTOM_STYLE__/g,
+    String(hasCustomStyle),
   );
 
   // app/layout.tsx
-  writeFileSync(
-    join(generatedAppDir, "layout.tsx"),
-    layoutContent
-  );
+  writeFileSync(join(generatedAppDir, "layout.tsx"), layoutContent);
 
   // app/[[...slug]]/page.tsx
   writeFileSync(
     join(slugDir, "page.tsx"),
-    readFileSync(join(pkgDir, "templates", "page.tsx"), "utf8")
+    readFileSync(join(pkgDir, "templates", "page.tsx"), "utf8"),
   );
 
   // app/not-found.tsx
   writeFileSync(
     join(generatedAppDir, "not-found.tsx"),
-    readFileSync(join(pkgDir, "templates", "not-found.tsx"), "utf8")
+    readFileSync(join(pkgDir, "templates", "not-found.tsx"), "utf8"),
   );
 
   // app/sitemap.ts
   writeFileSync(
     join(generatedAppDir, "sitemap.ts"),
-    readFileSync(join(pkgDir, "templates", "sitemap.ts"), "utf8")
+    readFileSync(join(pkgDir, "templates", "sitemap.ts"), "utf8"),
   );
 
   // app/robots.ts
   writeFileSync(
     join(generatedAppDir, "robots.ts"),
-    readFileSync(join(pkgDir, "templates", "robots.ts"), "utf8")
+    readFileSync(join(pkgDir, "templates", "robots.ts"), "utf8"),
   );
 
   // Next.js fails to resolve _not-found when app is a symlink, so we always copy
