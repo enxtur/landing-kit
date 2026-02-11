@@ -5,7 +5,8 @@
   "exports": {
     ".": "./default.css",
     "./micro-saas": "./micro-saas.css",
-    "./dev-tool": "./dev-tool.css"
+    "./dev-tool": "./dev-tool.css",
+    "./cyberpunk": "./cyberpunk.css"
   },
   "dependencies": {
     "@landing-kit/core": "*"
