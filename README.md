@@ -2,6 +2,8 @@
 
 Build multi-page marketing websites using typed config instead of JSX.
 
+**[Live demo](https://landing-kit-demo.vercel.app/)**
+
 `landing-kit` is an open-source, developer-first framework for creating fast, static landing websites using a structured TypeScript config.  
 You define pages, sections, and content as data. The framework handles routing, rendering, SEO, and static generation.
 
@@ -72,12 +74,11 @@ Next.js is used internally, but you never see routing or page files. You only ed
 ```
 landing-kit/
 ├─ packages/
-│  ├─ core/              # framework logic (config, rendering, section types)
-│  ├─ next/              # Next.js wrapper, LandingKit component, CLI
-│  ├─ templates/         # CSS-only templates
-│  └─ create-landing-kit # scaffold CLI
-├─ template/             # scaffold template (landing.config + main only)
-├─ examples/
+│  ├─ core/                # framework logic (config, rendering, section types)
+│  ├─ next/                # Next.js wrapper, LandingKit component, CLI
+│  ├─ templates/           # CSS-only templates
+│  └─ create-landing-app/  # scaffold CLI (published as create-landing-kit)
+├─ template/               # scaffold template (landing.config + main only)
 └─ README.md
 ```
 
@@ -99,7 +100,15 @@ No `app/` directory, no page files, no routing code. The framework handles all o
 
 ## Getting started
 
-From the repo root, scaffold a new site:
+Scaffold a new site:
+
+```
+npx create-landing-kit@latest my-site
+cd my-site
+npm run dev
+```
+
+From the repo root (local development):
 
 ```
 node packages/create-landing-app/bin.js my-site
@@ -107,11 +116,9 @@ cd my-site
 npm run dev
 ```
 
-(When published, you will use `npm create landing-kit@latest` instead.)
-
 You only edit two files:
 
-- **landing.config.ts** — default export with `defineSite({ template?, meta, pages })` (optional `template`: `"default"` or `"micro-saas"`)
+- **landing.config.ts** — default export with `defineSite({ template?, meta, pages, analytics? })`. Optional `template`: `"default"`, `"micro-saas"`, `"cyberpunk"`, or `"dev-tool"`. Optional `meta.ogImage`, `meta.favicon`. Optional `analytics`: Google Analytics measurement ID (e.g. `G-XXXXXXXXXX`).
 - **main.tsx** — default export `function Main({ children }) { return <LandingKit>{children}</LandingKit> }`
 
 Build static output:
@@ -121,6 +128,23 @@ npm run build
 ```
 
 Deploy the generated `out/` folder to any static host.
+
+---
+
+## Custom styling
+
+Place a `style.css` file in your project’s `public/` directory to apply your own design. The framework detects it automatically and injects it in the layout. Your CSS loads after the theme, so you can override variables and add custom styles without changing any code.
+
+---
+
+## Templates
+
+Set `template` in `landing.config.ts` to one of:
+
+- **default** — Core styles (blue accent, light gray backgrounds).
+- **micro-saas** — Product-led: teal accent, soft gradients, card shadows. Suited for micro-SaaS and indie product landings.
+- **dev-tool** — Dark, minimal, developer-focused: electric blue accent, dark surfaces, Inter typography. Suited for dev tools and technical SaaS.
+- **cyberpunk** — Futuristic: matte black, neon cyan and magenta, glass panels, Space Grotesk + JetBrains Mono.
 
 ---
 
@@ -136,7 +160,9 @@ export default defineSite({
     title: "My Product",
     description: "Simple landing pages, done right",
     url: "https://example.com",
+    // optional: ogImage, favicon
   },
+  // optional: analytics: "G-XXXXXXXXXX"
   pages: {
     "/": {
       title: "Home",
@@ -148,6 +174,14 @@ export default defineSite({
           buttons: [
             { label: "Get started", href: "/pricing", variant: "primary" },
             { label: "Learn more", href: "/about", variant: "secondary" },
+          ],
+        },
+        {
+          type: "features",
+          id: "features",
+          heading: "Why us?",
+          items: [
+            { icon: "⚡", title: "Fast", description: "Static output. Deploy anywhere." },
           ],
         },
       ],

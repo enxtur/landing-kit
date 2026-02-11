@@ -4,12 +4,8 @@
   "private": true,
   "description": "Landing Kit",
   "workspaces": [
-    "packages/*",
-    "examples/*"
+    "packages/*"
   ],
-  "directories": {
-    "example": "examples"
-  },
   "scripts": {
     "dev": "npm run dev -w @landing-kit/next",
     "build": "npm run build -w @landing-kit/next",
