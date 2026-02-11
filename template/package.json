@@ -6,9 +6,9 @@
     "build": "landing-kit build"
   },
   "dependencies": {
-    "@landing-kit/core": "^0.0.9",
-    "@landing-kit/next": "^0.0.9",
-    "@landing-kit/templates": "^0.0.9",
+    "@landing-kit/core": "^0.0.10",
+    "@landing-kit/next": "^0.0.10",
+    "@landing-kit/templates": "^0.0.10",
     "next": "^16.1.6",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
