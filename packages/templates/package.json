@@ -1,6 +1,6 @@
 {
   "name": "@landing-kit/templates",
-  "version": "0.0.10",
+  "version": "1.0.0",
   "main": "./default.css",
   "exports": {
     ".": "./default.css",
