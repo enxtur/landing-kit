@@ -6,11 +6,12 @@ import config from "../landing.config";
 export default function RootLayout({ children }: PropsWithChildren) {
   const gtagId = config.analytics;
 
+  const hasCustomStyle = Boolean("__HAS_CUSTOM_STYLE__");
+
   return (
     <html lang="en">
       <head>
-        {/* @ts-expect-error __HAS_CUSTOM_STYLE__ is replaced at build time by landing-kit CLI */}
-        {__HAS_CUSTOM_STYLE__ && <link rel="stylesheet" href="/style.css" />}
+        {hasCustomStyle && <link rel="stylesheet" href="/style.css" />}
       </head>
       <body>
         {gtagId && (
