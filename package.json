@@ -1,6 +1,6 @@
 {
   "name": "landing-kit",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "private": true,
   "description": "Landing Kit",
   "workspaces": [
