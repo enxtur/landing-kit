@@ -15,7 +15,7 @@
     "build": "npm run build -w @landing-kit/next",
     "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "publish:all": "npm publish -w @landing-kit/core --access public && npm publish -w @landing-kit/templates --access public && npm publish -w @landing-kit/next --access public && npm publish -w create-landing-kit --access public",
+    "publish:all": "npm publish -w @landing-kit/core --provenance --access public && npm publish -w @landing-kit/templates --provenance --access public && npm publish -w @landing-kit/next --provenance --access public && npm publish -w create-landing-kit --provenance --access public",
     "bump": "bash scripts/bump-all.sh"
   },
   "repository": {
