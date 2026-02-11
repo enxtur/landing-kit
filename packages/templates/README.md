@@ -6,6 +6,7 @@ CSS-only themes for landing-kit. Re-exports `@landing-kit/core` styles with opti
 
 - **default** — Core styles as-is (blue accent, light gray backgrounds).
 - **micro-saas** — Product-led look: teal accent, soft gradients, card shadows, DM Sans-friendly typography. Suited for micro-SaaS and indie product landings.
+- **dev-tool** — Dark, minimal, developer-focused: electric blue accent, dark surfaces, large bold headings, Inter typography. Suited for serious dev tools and technical SaaS.
 
 ## Usage
 
@@ -23,5 +24,6 @@ export default defineSite({
 
 - **default** — Uses `@landing-kit/templates` (core styles as-is).
 - **micro-saas** — Uses `@landing-kit/templates/micro-saas`. Loads the DM Sans font via CSS; no HTML or layout changes are needed.
+- **dev-tool** — Uses `@landing-kit/templates/dev-tool`. Dark theme with electric blue accent, Inter font; no HTML or layout changes are needed.
 
 See [landing-kit](https://github.com/enxtur/landing-kit) for docs.

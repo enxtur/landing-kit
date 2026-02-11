@@ -4,7 +4,8 @@
   "main": "./default.css",
   "exports": {
     ".": "./default.css",
-    "./micro-saas": "./micro-saas.css"
+    "./micro-saas": "./micro-saas.css",
+    "./dev-tool": "./dev-tool.css"
   },
   "dependencies": {
     "@landing-kit/core": "*"
