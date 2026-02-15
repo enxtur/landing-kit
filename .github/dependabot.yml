@@ -16,6 +16,17 @@ updates:
     ignore:
       - dependency-name: '@types/node'
         update-types: ['version-update:semver-major']
+    groups:
+      react:
+        patterns:
+          - 'react'
+          - 'react-dom'
+          - '@types/react'
+          - '@types/react-dom'
+      dev-tools:
+        patterns:
+          - '**eslint**'
+          - '**typescript**'
   - package-ecosystem: 'docker'
     directory: '/'
     schedule:
