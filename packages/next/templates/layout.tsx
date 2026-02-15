@@ -12,8 +12,6 @@ export default function RootLayout({ children }: PropsWithChildren) {
     <html lang="en">
       <head>
         {hasCustomStyle && <link rel="stylesheet" href="/style.css" />}
-      </head>
-      <body>
         {gtagId && (
           <>
             <Script
@@ -30,8 +28,8 @@ export default function RootLayout({ children }: PropsWithChildren) {
             </Script>
           </>
         )}
-        {children}
-      </body>
+      </head>
+      <body>{children}</body>
     </html>
   );
 }
