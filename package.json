@@ -6,6 +6,10 @@
   "workspaces": [
     "packages/*"
   ],
+  "engines": {
+    "node": ">=22.19.0",
+    "npm": ">=10.8.2"
+  },
   "scripts": {
     "dev": "npm run dev -w @landing-kit/next",
     "build": "npm run build -w @landing-kit/next",
