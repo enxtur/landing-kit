@@ -8,7 +8,7 @@ const {
   cpSync,
 } = require("fs");
 const { join } = require("path");
-const { execSync } = require("child_process");
+const { execFileSync } = require("child_process");
 
 const cwd = process.cwd();
 const command = process.argv[2];
@@ -24,7 +24,7 @@ generateApp(cwd, pkgDir);
 
 // Run next
 try {
-  execSync(`npx next ${command}`, { cwd, stdio: "inherit" });
+  execFileSync("npx", ["next", command], { cwd, stdio: "inherit" });
 } catch (error) {
   console.error(error instanceof Error ? error.message : String(error));
   process.exit(1);
