@@ -34,12 +34,11 @@
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
-    "baseUrl": ".",
     "paths": {
-      "@landing-kit/core": ["packages/core/src"],
-      "@landing-kit/core/*": ["packages/core/src/*"],
-      "@landing-kit/next": ["packages/next"],
-      "@landing-kit/templates": ["packages/templates"]
+      "@landing-kit/core": ["./packages/core/src"],
+      "@landing-kit/core/*": ["./packages/core/src/*"],
+      "@landing-kit/next": ["./packages/next"],
+      "@landing-kit/templates": ["./packages/templates"]
     }
   }
 }
