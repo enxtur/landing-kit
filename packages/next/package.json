@@ -28,8 +28,8 @@
     "@landing-kit/core": "*",
     "@landing-kit/templates": "*",
     "next": "^16.2.1",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4"
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5"
   },
   "devDependencies": {
     "@types/node": "^22.19.17",
