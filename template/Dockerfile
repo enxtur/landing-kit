@@ -5,5 +5,5 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-FROM nginx:1.29.7
+FROM nginx:1.29.8
 COPY --from=builder /app/out /usr/share/nginx/html
